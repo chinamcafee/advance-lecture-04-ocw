@@ -204,6 +204,7 @@ decl_module! {
 			match Self::fetch_n_parse(){
 				Ok(data) => {
 					let price = data.data.dot_price;
+					// 提交回链上时，使用签名交易，可以保证安全
 					Self::offchain_signed_tx(block_number,price);
 				},
 				Err(e) =>  {
